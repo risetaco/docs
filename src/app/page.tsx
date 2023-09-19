@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { allPackages, Package } from "contentlayer/generated";
 import { useMemo, useState } from "react";
+import { PakcageLogoIcon, RightArrowIcon } from "@/components/Icon";
+import Image from "next/image";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -15,44 +18,72 @@ export default function Home() {
   }, [search]);
 
   return (
-    <main>
-      {/* HERO */}
-      <div style={{ textAlign: "center", margin: 32, fontSize: 48 }}>
-        Awesome Packages of ShopeePay Frontend
-      </div>
-      <div style={{ textAlign: "center", padding: 12 }}>
-        <input
-          placeholder="Search"
-          value={search}
-          onChange={(e) => setSearch(e.currentTarget.value)}
-        />
-      </div>
-      {localSearch.length === 0 ? (
-        "No result"
-      ) : (
-        <ul
-          style={{
-            listStyle: "none",
-            display: "grid",
-            gap: 12,
-            gridTemplateColumns: "repeat(4, 1fr)",
-          }}
-        >
-          {localSearch.map((pkg) => (
-            <li className="pkg-list" key={pkg._id}>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div>Logo</div>
-                <div>{pkg.library}</div>
-              </div>
-              <strong>{pkg.package}</strong>
-              <div>{pkg.desc}</div>
-              <Link href={pkg.url}>View Detail</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+    <>
+      <Hero
+        title="Awesome Packages of ShopeePay Frontend"
+        subtitle="Guidelines for the Selection and Effective Management of Curated
+              Third-Party Libraries and Dependencies in Software Development
+              Projects"
+        search={{
+          value: search,
+          onChange: (e) => setSearch(e.currentTarget.value),
+        }}
+      />
 
-      <div>How to Contribue Section</div>
-    </main>
+      <div className="container">
+        <div className="result">
+          {localSearch.length === 0 ? (
+            <div className="no-result">No result</div>
+          ) : (
+            <div className="result-list">
+              {localSearch.map((pkg) => (
+                <div className="card" key={pkg._id}>
+                  <div className="info">
+                    <PakcageLogoIcon />
+                    <span>{pkg.library}</span>
+                  </div>
+                  <strong>{pkg.package}</strong>
+                  <div className="description">{pkg.desc}</div>
+                  <Link href={pkg.url} className="link-wrapper">
+                    View Detail
+                    <RightArrowIcon />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="contribute">
+          <div className="content">
+            <h2>How to Contribute?</h2>
+            <p>
+              Guide you on how to contribute to adding a package on this website
+              & information on the best metrics for the library.
+            </p>
+            <Link className="link-wrapper" href="/contribute">
+              Add Package to this Site
+              <RightArrowIcon />
+            </Link>
+            <Link className="link-wrapper" href="/contribute">
+              Third-Party Metrics <RightArrowIcon />
+            </Link>
+          </div>
+          <div className="graphic">
+            <Image
+              src="/laptop.png"
+              alt="laptop"
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
+              width={500}
+              height={300}
+            />
+          </div>
+          <div className="clipping">
+            <div className="balloon ballon-1" />
+          </div>
+          <div className="balloon ballon-2" />
+        </div>
+      </div>
+    </>
   );
 }

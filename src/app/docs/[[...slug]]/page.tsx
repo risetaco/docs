@@ -2,14 +2,17 @@ import { allPackages, Package } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 import { getDocPathFromDynamicSlug } from "@/utils/path";
-import { DocPageLayout } from "./components/DocPageLayout";
+import DocPageLayout from "@/components/DocPageLayout";
 
-export const generateStaticParams = async () =>
-  allPackages.map((pkg: Package) => {
+export const generateStaticParams = async () => {
+  const slugs = allPackages.map((pkg: Package) => {
     const slug = pkg._raw.flattenedPath.split("/");
     if (!slug) notFound();
     return { slug };
   });
+
+  return slugs;
+};
 
 export const generateMetadata = ({
   params,

@@ -1,0 +1,15 @@
+.container {
+  &.mdx {
+    transform: translateY(-8rem);
+  }
+
+  .row {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+}
+
+article {
+  line-height: 1.5;
+}

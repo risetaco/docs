@@ -1,0 +1,11 @@
+.bundle-information {
+  margin-block: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  &--item-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}

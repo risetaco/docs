@@ -1,0 +1,14 @@
+.footer {
+  padding: 1rem;
+  background: var(--white);
+  border-top: 1px solid var(--light-gray);
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}

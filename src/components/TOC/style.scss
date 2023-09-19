@@ -1,0 +1,56 @@
+.toc {
+  --line-height: 1rem;
+
+  width: 15rem;
+  position: sticky;
+  top: 11rem; // navbar height(3rem) + translateY content (8rem) 
+  max-height: calc(100vh - 3rem); // 100vh - navbar height
+  overflow-y: auto;
+  flex-shrink: 0;
+
+  @media (width <=576px) {
+    display: none;
+  }
+
+  &-content {
+    position: relative;
+    line-height: var(--line-height);
+  }
+
+  &-content * {
+    line-height: var(--line-height);
+  }
+
+  .ink {
+    background: #DDD;
+    width: 0.125rem;
+    height: 100%;
+    position: absolute;
+  }
+
+  .rail {
+    position: absolute;
+    transition: all .125s ease-in-out;
+    position: absolute;
+    height: var(--line-height);
+    background: var(--primary);
+    width: 0.125rem;
+
+  }
+
+  ul {
+    padding-inline-start: 1rem;
+
+    >li {
+      list-style: none;
+
+      a {
+        font-weight: 400;
+      }
+    }
+  }
+
+  .active {
+    color: var(--primary);
+  }
+}

@@ -1,0 +1,35 @@
+header {
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  top: 0px;
+  padding-inline: calc(50vw - var(--container-width) / 2);
+  height: var(--navbar-height);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+
+  &.sticky {
+    border-bottom: 1px solid rgba(153, 159, 174, 0.15);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--dark-gray);
+    padding-inline: 1rem;
+    width: 100%;
+
+    .nav-menu {
+      gap: 1rem;
+      display: flex;
+
+      .active {
+        color: var(--primary);
+      }
+    }
+  }
+}

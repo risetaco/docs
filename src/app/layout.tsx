@@ -1,9 +1,11 @@
-import "./globals.scss";
+import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Link from "next/link";
+import { DM_Sans } from "next/font/google";
+import "./normalize.scss";
+import "./globals.scss";
+import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Doc site",
@@ -17,34 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav
-          style={{
-            background: "red",
-            paddingInline: "calc((100vw - 800px) / 2)",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>Logo</div>
-          <ul style={{ listStyle: "none", display: "flex", gap: 12 }}>
-            <li>
-              <Link href={"/"}>Home</Link>
-            </li>
-            <li>
-              <Link href={"/how-to-contribute"}>How To Contribute</Link>
-            </li>
-            <li>
-              <Link href={"/docs"}>Package List</Link>
-            </li>
-          </ul>
-        </nav>
-        <div
-          className="container"
-          style={{ maxWidth: 800, marginLeft: "auto", marginRight: "auto" }}
-        >
-          {children}
-        </div>
+      <body className={dmSans.className}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
