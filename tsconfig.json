@@ -24,12 +24,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
-      ]
+      "@/*": [ "./src/*"],
+      "flexsearch": ["./node_modules/@types/flexsearch"],
+      "contentlayer/generated": [ "./.contentlayer/generated"]
     }
   },
   "include": [

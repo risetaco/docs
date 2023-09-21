@@ -1,10 +1,11 @@
-import SearchInput, { SearchInputProps } from "@/components/SearchInput";
+import { ComponentProps } from "react";
+import SearchInput from "@/components/SearchInput";
 import "./style.scss";
 
 type HeroProps = {
   title: string;
   subtitle: string;
-  search?: null | SearchInputProps;
+  search?: null | ComponentProps<typeof SearchInput>;
 };
 
 const Hero = ({ title, subtitle, search }: HeroProps) => {

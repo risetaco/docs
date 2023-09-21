@@ -1,14 +1,12 @@
 .hero-wrapper {
   background:
     linear-gradient(180deg, rgba(210, 210, 255, 0.50) 30%,
-      rgba(255, 255, 255, 0) 80%,
-      rgb(255, 255, 255) 100%),
+      var(--background) 100%),
 }
 
 .hero {
   background: linear-gradient(180deg, rgba(210, 210, 255, 0.50) 30%,
-      rgba(255, 255, 255, 0) 80%,
-      rgb(255, 255, 255) 100%), url('/bg.png');
+      var(--background) 100%), url('/bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

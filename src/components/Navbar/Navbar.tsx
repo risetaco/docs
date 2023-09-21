@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IS_BROWSER } from "@/utils/browser";
+import { clsx } from "clsx";
+import ModalSearch from "../FlexSearch";
+
 import "./style.scss";
 
 const MENU = [
@@ -24,6 +26,7 @@ const MENU = [
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
   const pathname = usePathname();
+  const [modal, setModal] = useState(false);
   const active = pathname.split("/")[1] || "";
 
   useEffect(() => {
@@ -34,26 +37,42 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (!IS_BROWSER) return;
-    setSticky(window.scrollY > 48);
-  }, []);
+    const downHandler = ({ key, metaKey, ctrlKey }: KeyboardEvent) => {
+      if ((metaKey || ctrlKey) && key === "k") {
+        setModal((prev) => !prev);
+      }
+    };
+
+    window.addEventListener("keydown", downHandler);
+
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+    };
+  }, [modal]);
 
   return (
-    <header className={`${sticky ? "sticky" : ""}`}>
+    <header className={clsx({ sticky })}>
       <nav>
         <div>Awsm.</div>
         <div className="nav-menu">
           {MENU.map((item) => (
             <Link
-              className={`${active === item.href.slice(1) ? "active" : ""}`}
               href={item.href}
               key={item.name}
+              className={clsx({ active: active === item.href.slice(1) })}
             >
               {item.name}
             </Link>
           ))}
+          <div className="search-box">
+            <button onClick={() => setModal(true)}>
+              <span>Search</span>
+              <kbd> ⌘K</kbd>
+            </button>
+          </div>
         </div>
       </nav>
+      <ModalSearch show={modal} onClose={() => setModal(false)} />
     </header>
   );
 };

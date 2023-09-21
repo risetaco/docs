@@ -4,6 +4,7 @@ import {
   useSetActiveAnchor,
   useSlugs,
 } from "@/context/anchor";
+import Link from "next/link";
 
 type HeadingLinkType = {
   tag: `h${1 | 2 | 3 | 4 | 5 | 6}`;
@@ -41,13 +42,9 @@ export const HeadingLink = ({
   }, [id, context, slugs, observer, setActiveAnchor]);
 
   return (
-    <Tag {...rest} id={id} style={{ paddingTop: 48 }}>
+    <Tag id={id} {...rest}>
       {children}
-      {id && (
-        <a href={`#${id}`} ref={obRef} style={{ marginLeft: 12 }}>
-          #
-        </a>
-      )}
+      {id && <Link href={`#${id}`} ref={obRef} />}
     </Tag>
   );
 };

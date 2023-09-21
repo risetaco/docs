@@ -27,10 +27,10 @@ export const Package = defineDocumentType(() => ({
     },
     headings: {
       type: "json",
-      resolve: async (doc) => {
+      resolve: (doc) => {
         const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
         const slugger = new GithubSlugger();
-        const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
+        return Array.from(doc.body.raw.matchAll(regXHeader)).map(
           ({ groups }) => {
             const flag = groups?.flag;
             const content = groups?.content;
@@ -41,7 +41,25 @@ export const Package = defineDocumentType(() => ({
             };
           }
         );
-        return headings;
+      },
+    },
+    paragraphs: {
+      type: "json",
+      resolve: (doc) => {
+        const raw = doc.body.raw;
+        const slugger = new GithubSlugger();
+        const headings = raw.match(/^#{2,}\s+(?<content>.+)/gm);
+        const contentSections = raw.split(/^#{2,}\s+/gm).slice(1);
+
+        if (!headings || !contentSections) {
+          return [];
+        }
+
+        return headings.map((heading, index) => {
+          const slug = heading.replaceAll("#", "").trim();
+          const content = contentSections[index].trim();
+          return { slug: slugger.slug(slug), content };
+        });
       },
     },
   },

@@ -1,0 +1,22 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding-top: 3rem;
+
+  & a {
+    opacity: 0;
+
+    &::after {
+      content: '#';
+      padding-inline: 0.25rem;
+      color: var(--dark-gray);
+    }
+  }
+
+  &:hover a {
+    opacity: 1;
+  }
+}

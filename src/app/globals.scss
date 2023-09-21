@@ -1,15 +1,37 @@
+@import './normalize.scss';
+
 :root {
   --primary: #5956E9;
   --secondary: #FFD3DB;
   --dark-gray: #999FAE;
   --light-gray: #F5F5F5;
-  --white: #FFF;
+  --background: #FFF;
+  --foreground: #111;
   --container-width: 64rem;
   --border-radius: 1rem;
   --navbar-height: 3rem;
   --navbar-height-expand: 6rem;
   --border-width: 1px;
   --drop-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+
+  @media (prefers-color-scheme: dark) {
+    --primary: #FFD3DB;
+    --secondary: #5956E9;
+    --dark-gray: #999FAE;
+    --light-gray: #F5F5F5;
+    --background: #111;
+    --foreground: #FFF;
+    --drop-shadow: 0px 4px 20px rgba(255, 255, 255, 0.125);
+  }
+}
+
+html {
+  scrollbar-gutter: stable both-edges;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
 }
 
 * {
@@ -21,8 +43,7 @@ a {
   text-decoration: none;
   font-weight: 500;
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: var(--primary);
   }
 }
@@ -46,7 +67,7 @@ a {
     .card {
       padding: 1rem;
       border-radius: var(--border-radius);
-      background: var(--white);
+      background: var(--background);
       filter: drop-shadow(var(--drop-shadow));
 
       .info {
@@ -81,7 +102,7 @@ a {
 .contribute {
   margin-block: 1rem;
   position: relative;
-  background: #FFD3DB;
+  background: var(--secondary);
   border-radius: var(--border-radius);
   padding: 1rem;
   display: grid;
@@ -102,7 +123,7 @@ a {
 
   .content {
     z-index: 1;
-    background: var(--white);
+    background: var(--background);
     border-radius: calc(var(--border-radius) - 0.25rem);
     padding: 1rem;
     max-width: 100%;
@@ -130,7 +151,7 @@ a {
   .balloon {
     position: absolute;
     border-radius: 50%;
-    background: var(--color-primary, var(--primary));
+    background: var(--primary);
 
     @media (width <=480px) {
       display: none;

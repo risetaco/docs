@@ -9,6 +9,7 @@ header {
   height: var(--navbar-height);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
   z-index: 1;
 
   &.sticky {
@@ -26,9 +27,26 @@ header {
     .nav-menu {
       gap: 1rem;
       display: flex;
+      align-items: center;
 
       .active {
         color: var(--primary);
+      }
+
+      .search-box {
+        button {
+          color: inherit;
+          border: none;
+          cursor: pointer;
+          background: inherit;
+          padding: 0.5rem;
+          border-radius: calc(var(--border-radius) / 2);
+          transition: background 0.2s ease-in-out;
+
+          &:hover {
+            background: var(--background);
+          }
+        }
       }
     }
   }

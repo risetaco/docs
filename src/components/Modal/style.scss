@@ -1,0 +1,12 @@
+dialog {
+  border: none;
+
+  &[open] {
+    background: var(--background);
+    top: 8rem;
+    margin-inline: auto;
+    margin-block: unset;
+    width: calc(var(--container-width) - 20rem);
+    border-radius: var(--border-radius);
+  }
+}
