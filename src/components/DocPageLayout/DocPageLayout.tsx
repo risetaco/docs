@@ -17,7 +17,9 @@ interface DocPageProps {
 export const DocPageLayout = (props: DocPageProps) => {
   const { params } = props;
   const docPath = getDocPathFromDynamicSlug(params.slug);
-  const doc = allPackages.find((pkg) => pkg._raw.flattenedPath === docPath);
+  const doc = allPackages.find(
+    (pkg) => pkg._raw.flattenedPath === decodeURIComponent(docPath)
+  );
 
   if (!params.slug) redirect("/"); // Index Page
   if (!doc) notFound(); // If not index page, but could find any

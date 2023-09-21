@@ -1,0 +1,101 @@
+---
+package: "@sipp/webpack"
+desc: SIPP Webpack
+library: internal
+---
+
+## Description
+
+`@sipp/webpack` is a collection of webpack tools with customisation configured for SIPP Frontend project.
+
+## Main Feature
+
+- Webpack and Webpack CLI
+- Default loader for (`javascript`, `typescript`, `css, and s(a|c)ss`, and `svg`)
+- Support `.env` file
+- Webpack merge config (use: `webpack-merge`)
+- Support module federation using webpack module federation plugin
+
+## Dependencies
+
+This modules are include these following plugin:
+
+1. Core: `webpack`, `webpack-cli`, `webpack-dev-server`.
+2. Style (CSS, SASS, SCSS): `style-loader`, `sass-loader`, `postcss-loader`, `css-loader`, `mini-css-extract-plugin`.
+3. Babel: [`@sipp/babel`](https://npm.shopee.io/-/web/detail/@sipp/babel).
+4. SVG: `@svgr/webpack`
+
+## Installation
+
+```sh
+$ yarn add @sipp/webpack
+
+# Use along with @sipp/babel
+$ yarn add @sipp/webpack @sipp/babel
+```
+
+### webpack configs
+
+You can extends or merge your webpack config with `@sipp/webpack` config to use our preconfigured config.
+
+For example:
+
+```bash
+# file: .env
+
+PORT=8080
+PUBLIC_PATH=http://localhost:8080
+```
+
+```js
+// file: webpack.config.js
+
+const { merge } = require("@sipp/webpack/merge");
+const dev = require("@sipp/webpack/config/webpack.dev");
+
+module.exports = merge(dev, {
+  // your custom config
+});
+```
+
+### preconfigure webpack config
+
+`@sipp/webpack` provide some preconfigure webpack config for you to use.
+
+- `sipp/webpack/config/webpack.common`: webpack config for both development and production
+- `sipp/webpack/config/webpack.dev`: webpack config for development
+- `sipp/webpack/config/webpack.prod`: webpack config for production
+
+### module federation
+
+`@sipp/webpack` provide some preconfigure webpack config for you to use of module federation plugin.
+
+- `sipp/webpack/config/webpack.mf`: webpack config for module federation
+
+For example:
+
+```js
+// file: webpack.config.js
+const { merge } = require("@sipp/webpack/merge");
+const dev = require("@sipp/webpack/config/webpack.dev");
+const mf = require("@sipp/webpack/config/webpack.mf");
+
+module.exports = merge(
+  dev,
+  mf({
+    name: "app1",
+    filename: "remoteEntry.js",
+    exposes: {
+      "./Header": "./src/components/Header",
+    },
+    shared: {
+      react: {
+        singleton: true,
+      },
+      "react-dom": {
+        singleton: true,
+      },
+    },
+  })
+);
+```

@@ -20,7 +20,9 @@ export const generateMetadata = ({
   params: { slug: string[] };
 }) => {
   const docPath = getDocPathFromDynamicSlug(params.slug);
-  const doc = allPackages.find((pkg) => pkg._raw.flattenedPath === docPath);
+  const doc = allPackages.find(
+    (pkg) => pkg._raw.flattenedPath === decodeURIComponent(docPath)
+  );
   return { title: doc?.package };
 };
 

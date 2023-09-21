@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import Footer from "@/components/Footer";
-import "./globals.scss";
+import "./css/globals.scss";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 

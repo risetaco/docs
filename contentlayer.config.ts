@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import rehypeSlug from "rehype-slug";
 import GithubSlugger from "github-slugger";
 import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
 
 export const Package = defineDocumentType(() => ({
   name: "Package",
@@ -28,7 +29,7 @@ export const Package = defineDocumentType(() => ({
     headings: {
       type: "json",
       resolve: (doc) => {
-        const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g;
+        const regXHeader = /\n(?<flag>#{2,6})\s+(?<content>.+)/g;
         const slugger = new GithubSlugger();
         return Array.from(doc.body.raw.matchAll(regXHeader)).map(
           ({ groups }) => {
@@ -48,8 +49,8 @@ export const Package = defineDocumentType(() => ({
       resolve: (doc) => {
         const raw = doc.body.raw;
         const slugger = new GithubSlugger();
-        const headings = raw.match(/^#{2,}\s+(?<content>.+)/gm);
-        const contentSections = raw.split(/^#{2,}\s+/gm).slice(1);
+        const headings = raw.match(/^#{2,6}\s+(?<content>.+)/gm);
+        const contentSections = raw.split(/^#{2,6}\s+/gm).slice(1);
 
         if (!headings || !contentSections) {
           return [];
@@ -70,6 +71,6 @@ export default makeSource({
   documentTypes: [Package],
   mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug],
+    rehypePlugins: [rehypeSlug, rehypePrism],
   },
 });

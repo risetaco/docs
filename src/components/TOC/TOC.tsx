@@ -51,10 +51,6 @@ const TOC = ({ toc }: { toc: TOCItem[] }) => {
         className="toc-content"
         style={{ "--line-height": `${lineHeight}rem` }}
       >
-        <div className="ink" />
-        {top >= 0 && (
-          <span className="rail" style={{ top: `${top * lineHeight}rem` }} />
-        )}
         <ul>
           {nestTOC(toc).map((item, index) => (
             <li key={index}>

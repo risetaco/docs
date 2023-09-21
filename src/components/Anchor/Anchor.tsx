@@ -1,13 +1,16 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import Link from "next/link";
 import "./style.scss";
 
-const Anchor = ({ href, children, ...rest }: ComponentProps<typeof Link>) => {
-  return (
-    <Link className="anchor" href={href} {...rest}>
-      {children}
-    </Link>
-  );
-};
+const Anchor = forwardRef<HTMLAnchorElement, ComponentProps<typeof Link>>(
+  ({ href, children, ...rest }: ComponentProps<typeof Link>, ref) => {
+    return (
+      <Link className="anchor" href={href} ref={ref} {...rest}>
+        {children}
+      </Link>
+    );
+  }
+);
 
+Anchor.displayName = "Anchor";
 export default Anchor;
