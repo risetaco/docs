@@ -7,13 +7,18 @@ header {
   top: 0px;
   padding-inline: calc(50vw - var(--container-width) / 2);
   height: var(--navbar-height);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid transparent;
+  backdrop-filter: blur(0.5rem);
   z-index: 1;
+  transition: box-shadow 0.2s ease-in-out;
 
   &.sticky {
-    border-bottom: 1px solid rgba(153, 159, 174, 0.15);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 8px 32px rgba(16, 22, 26, 0.2);
+    transition: box-shadow 0.2s ease-in-out;
+
+    // prefer dark
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(255, 255, 255, 0.2);
+    }
   }
 
   nav {

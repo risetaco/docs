@@ -1,20 +1,27 @@
-import { DetailedHTMLProps, InputHTMLAttributes, forwardRef } from "react";
-import { PackageIcon } from "../Icon";
+import {
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  ReactElement,
+  ReactNode,
+  cloneElement,
+  forwardRef,
+} from "react";
 import "./style.scss";
 
 type SearchInputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > & {
+  icon?: ReactNode;
   block?: boolean;
 };
 
 const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  ({ block, ...rest }, ref) => {
+  ({ block, icon, ...rest }, ref) => {
     return (
       <div className="search-bar-wrapper">
         <div className="search-bar" style={{ width: block ? "100%" : "" }}>
-          <PackageIcon className="prefix" />
+          {cloneElement(icon as ReactElement, { className: "prefix" })}
           <input placeholder="Search" ref={ref} {...rest} />
           <button>Search</button>
         </div>

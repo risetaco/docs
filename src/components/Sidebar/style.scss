@@ -1,4 +1,4 @@
-.toc {
+.sidebar {
   width: 12rem;
   position: sticky;
   top: 11rem; // navbar height(3rem) + translateY content (8rem) 
@@ -13,7 +13,7 @@
   ul {
     list-style: none;
     padding-inline-start: 0;
-
+    
     ul {
       padding-inline-start: 1rem;
     }

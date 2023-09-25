@@ -21,6 +21,7 @@ import Modal from "../Modal";
 
 import "./style.scss";
 import Anchor from "../Anchor";
+import { SearchIcon } from "../Icon";
 
 type DocumentSearchResult = {
   result: string[];
@@ -192,8 +193,9 @@ const FlexSearchModal = ({ show, onClose, ...rest }: FlexSearchModalProps) => {
       <SearchInput
         block
         ref={inputRef}
-        onKeyDown={handleKeyDown}
         value={query}
+        icon={<SearchIcon />}
+        onKeyDown={handleKeyDown}
         onChange={(e) => setQuery(e.currentTarget.value)}
       />
       {results.length > 0 && (

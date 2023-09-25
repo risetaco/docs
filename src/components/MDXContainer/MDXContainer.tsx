@@ -8,7 +8,7 @@ const MDXContainer = (props: { code: string }) => {
   const context = { index: 0 };
 
   return (
-    <main>
+    <article className="markdown-body">
       <MDXContent
         components={{
           h1: (props) => <HeadingLink context={context} tag="h1" {...props} />,
@@ -19,7 +19,7 @@ const MDXContainer = (props: { code: string }) => {
           h6: (props) => <HeadingLink context={context} tag="h6" {...props} />,
         }}
       />
-    </main>
+    </article>
   );
 };
 

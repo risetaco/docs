@@ -9,6 +9,8 @@ import MDXContainer from "@/components/MDXContainer";
 import TOC from "@/components/TOC";
 import Hero from "@/components/Hero";
 import "./style.scss";
+import NavLink from "../NavLink";
+import Sidebar from "../Sidebar";
 
 interface DocPageProps {
   params: { slug: string[] };
@@ -17,9 +19,10 @@ interface DocPageProps {
 export const DocPageLayout = (props: DocPageProps) => {
   const { params } = props;
   const docPath = getDocPathFromDynamicSlug(params.slug);
-  const doc = allPackages.find(
+  const docIndex = allPackages.findIndex(
     (pkg) => pkg._raw.flattenedPath === decodeURIComponent(docPath)
   );
+  const doc = allPackages[docIndex];
 
   if (!params.slug) redirect("/"); // Index Page
   if (!doc) notFound(); // If not index page, but could find any
@@ -27,15 +30,35 @@ export const DocPageLayout = (props: DocPageProps) => {
   return (
     <>
       <Hero title={doc.package} subtitle={doc.desc} />
-      <article className="container" style={{ transform: "translateY(-8rem)" }}>
+      <div className="container" style={{ transform: "translateY(-8rem)" }}>
         <BundleInformation version="1.1.1" packageName={doc.package} />
         <ActiveAnchorProvider>
           <div className="row">
-            <MDXContainer code={doc.body.code} />
+            <Sidebar
+              index={docIndex}
+              id={doc._id}
+              list={allPackages.map(({ _id, package: title, url }) => ({
+                _id,
+                title,
+                url,
+              }))}
+            />
+            <div style={{ width: "100%" }}>
+              <MDXContainer code={doc.body.code} />
+              <NavLink
+                index={docIndex}
+                id={doc._id}
+                list={allPackages.map(({ _id, package: title, url }) => ({
+                  _id,
+                  title,
+                  url,
+                }))}
+              />
+            </div>
             <TOC toc={doc.headings} />
           </div>
         </ActiveAnchorProvider>
-      </article>
+      </div>
     </>
   );
 };

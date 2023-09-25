@@ -1,11 +1,13 @@
 @import './normalize.scss';
 @import './prims.scss';
+@import './github-markdown.css';
+
 
 :root {
   --primary: #5956E9;
   --secondary: #FFD3DB;
   --dark-gray: #999FAE;
-  --light-gray: #F5F5F5;
+  --light-gray: #e5e7eb;;
   --background: #FFF;
   --foreground: #111;
   --container-width: 64rem;
@@ -19,10 +21,24 @@
     --primary: #FFD3DB;
     --secondary: #5956E9;
     --dark-gray: #999FAE;
-    --light-gray: #F5F5F5;
+    --light-gray: #e5e7eb;
     --background: #111;
     --foreground: #FFF;
     --drop-shadow: 0px 4px 20px rgba(255, 255, 255, 0.125);
+  }
+}
+
+
+* {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--primary);
   }
 }
 
@@ -35,19 +51,10 @@ body {
   color: var(--foreground);
 }
 
-* {
-  scroll-behavior: smooth;
-}
-
-a {
+input {
   color: inherit;
-  text-decoration: none;
-  font-weight: 500;
-
-  &:hover {
-    color: var(--primary);
-  }
 }
+
 
 .container {
   max-width: var(--container-width);

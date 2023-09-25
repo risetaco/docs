@@ -2,11 +2,18 @@ dialog {
   border: none;
 
   &[open] {
-    background: var(--background);
+    background: rgba(239, 247, 255, 0.615);
     top: 8rem;
     margin-inline: auto;
     margin-block: unset;
     width: calc(var(--container-width) - 20rem);
     border-radius: var(--border-radius);
+    backdrop-filter: blur(1.5rem);
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 8px 32px rgba(16, 22, 26, 0.2);
+
+    @media (prefers-color-scheme: dark) {
+      background: rgba(16, 22, 26, 0.615);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(255, 255, 255, 0.2);
+    }
   }
 }

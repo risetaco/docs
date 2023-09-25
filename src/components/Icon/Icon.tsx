@@ -89,11 +89,27 @@ const RightArrowIcon = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const LeftArrowIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    width="1rem"
+    height="1rem"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M15 18L9 12L15 6" />
+  </svg>
+);
+
 const HorizontalScroll = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="1rem"
+    height="1rem"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -110,6 +126,24 @@ const HorizontalScroll = (props: SVGProps<SVGSVGElement>) => (
     <path d="M21 15L6 15C4.34315 15 3 13.6569 3 12C3 10.3432 4.34314 9 6 9L21 9" />
   </svg>
 );
+
+const SearchIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1rem"
+    height="1rem"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="11" cy="11" r="8"></circle>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+);
+
 export {
   LinkIcon,
   PackageIcon,
@@ -117,4 +151,6 @@ export {
   PakcageLogoIcon,
   RightArrowIcon,
   HorizontalScroll,
+  LeftArrowIcon,
+  SearchIcon,
 };

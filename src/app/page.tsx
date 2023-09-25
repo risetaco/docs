@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { allPackages, Package } from "contentlayer/generated";
 import { useMemo, useState } from "react";
-import { PakcageLogoIcon, RightArrowIcon } from "@/components/Icon";
+import {
+  PackageIcon,
+  PakcageLogoIcon,
+  RightArrowIcon,
+} from "@/components/Icon";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 
@@ -26,6 +30,7 @@ export default function Home() {
               Projects"
         search={{
           value: search,
+          icon: <PackageIcon />,
           onChange: (e) => setSearch(e.currentTarget.value),
         }}
       />
